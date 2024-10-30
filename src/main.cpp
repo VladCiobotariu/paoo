@@ -12,7 +12,7 @@ int main() {
 
     student1.display();
 
-    student2.setName("Jane Smith");
+    student2.setName("Marcel Ciolacu");
     student2.setGrade(8.7);
     student2.display();
 
