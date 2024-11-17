@@ -6,9 +6,9 @@
 
 class Student {
 private:
-    int id;
-    char* name;
-    float grade;
+    int id = 0;
+    char* name = NULL;
+    float grade = 0.0;
 
 public:
     Student(int studentId, const char* studentName, float studentGrade);
