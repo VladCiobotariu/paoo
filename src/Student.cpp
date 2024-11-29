@@ -13,10 +13,12 @@ Student::~Student() {
     std::cout << "deconstructor" << std::endl;
 }
 
+// const Student& other -> copy
+// Student&& other -> move
+
 Student::Student(const Student& other)
-    : id(other.id), grade(other.grade) {
-    name = new char[std::strlen(other.name) + 1];
-    std::strcpy(name, other.name);
+    : id(0), name(nullptr), grade(0.0) {
+    init(other);
     std::cout << "copy constructor" << std::endl;
 }
 
@@ -24,6 +26,30 @@ Student::Student(Student&& other) noexcept
     : id(other.id), grade(other.grade), name(other.name) {
     other.name = nullptr;
     std::cout << "move constructor" << std::endl;
+}
+
+void Student::init(const Student& other) {
+    id = other.id;         
+    grade = other.grade;   
+
+    if (other.name) {
+        name = new char[std::strlen(other.name) + 1];
+        std::strcpy(name, other.name);
+    } else {
+        name = nullptr;
+    }
+}
+
+void Student::swap(Student& other) noexcept {
+    std::swap(id, other.id);
+    std::swap(name, other.name);
+    std::swap(grade, other.grade);
+}
+
+Student& Student::operator=(Student rhs) {
+    swap(rhs);
+    std::cout << "assignment operator" << std::endl;
+    return *this;
 }
 
 int Student::getId() const {

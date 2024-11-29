@@ -16,5 +16,13 @@ int main() {
     student2.setGrade(8.7);
     student2.display();
 
+    Student student4(4, "Student1", 7.5);
+    student4 = student2;
+    student4.display();
+
+    Student student5(5, "Student2", 6.5);
+    student5 = std::move(student2);
+    student5.display();
+
     return 0;
 }
