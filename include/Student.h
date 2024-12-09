@@ -10,6 +10,8 @@ private:
     char* name = NULL;
     float grade = 0.0;
 
+    void init(const Student& other);
+
 public:
     Student(int studentId, const char* studentName, float studentGrade);
 
@@ -18,6 +20,9 @@ public:
     Student(const Student& other);
 
     Student(Student&& other) noexcept;
+
+    Student& operator=(Student rhs); 
+    void swap(Student& other) noexcept; 
 
     int getId() const;
     const char* getName() const;
