@@ -2,27 +2,25 @@
 #define STUDENT_H
 
 #include <iostream>
+#include <memory>
 #include <string>
 
 class Student {
 private:
     int id = 0;
-    char* name = NULL;
+    std::shared_ptr<char[]> name;
     float grade = 0.0;
-
-    void init(const Student& other);
 
 public:
     Student(int studentId, const char* studentName, float studentGrade);
 
-    ~Student();
+    ~Student() = default;
 
-    Student(const Student& other);
+    Student(const Student& other) = default;
+    Student(Student&& other) noexcept = default;
 
-    Student(Student&& other) noexcept;
-
-    Student& operator=(Student rhs); 
-    void swap(Student& other) noexcept; 
+    Student& operator=(const Student& other) = default;
+    Student& operator=(Student&& other) noexcept = default;
 
     int getId() const;
     const char* getName() const;
