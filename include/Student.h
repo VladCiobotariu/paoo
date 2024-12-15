@@ -11,15 +11,15 @@ private:
     std::shared_ptr<char[]> name;
     float grade = 0.0;
 
+    Student(const Student& other);            
+    Student& operator=(const Student& other);
+
 public:
     Student(int studentId, const char* studentName, float studentGrade);
 
     ~Student() = default;
 
-    Student(const Student& other) = default;
     Student(Student&& other) noexcept = default;
-
-    Student& operator=(const Student& other) = default;
     Student& operator=(Student&& other) noexcept = default;
 
     int getId() const;
